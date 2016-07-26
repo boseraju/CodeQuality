@@ -1,0 +1,24 @@
+Junit Tests Best Practices:
+
+
+1. Make sure unit tests are simple and less expensive
+
+For example, do not write unit tests that access a database, or read/write from the filesystem. These activities are too slow and too unreliable. So Try Mock these external services.
+
+
+2. Always aim to do one assertion for each test method:
+ 
+Even this is not a thumb rule then also you should try to test only one thing in one test case. Do not test multiple things using assertions in single test case. This way, if some test case fails, you know exactly what went wrong.
+
+
+3.Put assertion parameters in the proper order
+
+The parameters to JUnit's assertions are:
+
+expected
+actual
+For example, use assertEquals(expected, actual) rather than assertEquals(actual, expected). Ordering the parameters correctly ensures that JUnit's messages are accurate.
+
+4. Do not print anything out in unit tests
+
+If you are correctly following all the guidelines, then you will never need to add any print statement in your test cases. If you feel like having one, revisit your test case(s), you have done something wrong.
