@@ -1,0 +1,13 @@
+Architecture / Design
+
+Single Responsibility Principle: The idea that a classses and methods  should have one-and-only-one responsibility. 
+If we have to use “and” to finish describing what a method is capable of doing, it might be at the wrong level of abstraction.
+
+Code duplication: If the same code is copied, it should be refactored so that the common functionality is split out.
+
+Potential bugs:  Some times we may not cover all the senarios in junit testing. So through code review can check 
+find potential bugs like - Will the loops terminate in the way we expect? all our cond
+
+Efficiency: like Are we using efficient data structures for  out problem solving.
+
+
