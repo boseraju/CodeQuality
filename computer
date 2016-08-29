@@ -1,9 +1,19 @@
 public class ComputeSizeAverage implements MeasureComputer {
 
+	
+	
+	
   @Override
   public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
+		
+		  ShiftLeftMetrics   shiftLeftMetrics  = new ShiftLeftMetrics();
+	      private final Set<String> outputMetricKeys;
+	      for (Metric metric : shiftLeftMetrics.getMetrics()) {
+	    	  outputMetricKeys.add(metric.key());
+	      }
+	
     return def.newDefinitionBuilder()
-      .setOutputMetrics(NUM_OF_TOTAL_TESTS_UNIT.key(),TEST_EXECUTION_TIME_UNIT)
+      .setOutputMetrics(outputMetricKeys)
       .build();
   }
 
@@ -12,10 +22,16 @@ public class ComputeSizeAverage implements MeasureComputer {
     // measure is already defined on files by {@link SetSizeOnFilesSensor}
     // in scanner stack    
       int sum = 0;
-      for (Measure child : context.getChildrenMeasures(NUM_OF_TOTAL_TESTS_UNIT.key())) {
-        sum += child.getIntValue();
-
-      }
-      context.addMeasure(NUM_OF_TOTAL_TESTS_UNIT.key(), sum);
+      ShiftLeftMetrics   shiftLeftMetrics  = new ShiftLeftMetrics();
+      List<Metric>  allShiftLeftMetrics  = shiftLeftMetrics.getMetrics();
+      
+      for (Metric metric : allShiftLeftMetrics) {
+    	  sum = 0;
+    	  for (Measure child : context.getChildrenMeasures(metric.key())) {
+    	        sum += child.getIntValue();
+    	      }
+    	  context.addMeasure(metric.key(), sum);
+	}
+      
   }
 }
