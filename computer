@@ -13,7 +13,7 @@ public class ComputeSizeAverage implements MeasureComputer {
 	      }
 	
     return def.newDefinitionBuilder()
-      .setOutputMetrics(outputMetricKeys)
+      .setOutputMetrics(outputMetricKeys.toArray(new String[outputMetricKeys.size()]))
       .build();
   }
 
