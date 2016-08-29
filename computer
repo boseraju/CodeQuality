@@ -1,0 +1,21 @@
+public class ComputeSizeAverage implements MeasureComputer {
+
+  @Override
+  public MeasureComputerDefinition define(MeasureComputerDefinitionContext def) {
+    return def.newDefinitionBuilder()
+      .setOutputMetrics(NUM_OF_TOTAL_TESTS_UNIT.key(),TEST_EXECUTION_TIME_UNIT)
+      .build();
+  }
+
+  @Override
+  public void compute(MeasureComputerContext context) {
+    // measure is already defined on files by {@link SetSizeOnFilesSensor}
+    // in scanner stack    
+      int sum = 0;
+      for (Measure child : context.getChildrenMeasures(NUM_OF_TOTAL_TESTS_UNIT.key())) {
+        sum += child.getIntValue();
+
+      }
+      context.addMeasure(NUM_OF_TOTAL_TESTS_UNIT.key(), sum);
+  }
+}
