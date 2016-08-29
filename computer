@@ -23,9 +23,8 @@ public class ComputeSizeAverage implements MeasureComputer {
     // in scanner stack    
       int sum = 0;
       ShiftLeftMetrics   shiftLeftMetrics  = new ShiftLeftMetrics();
-      List<Metric>  allShiftLeftMetrics  = shiftLeftMetrics.getMetrics();
-      
-      for (Metric metric : allShiftLeftMetrics) {
+     
+      for (Metric metric : shiftLeftMetrics.getMetrics()) {
     	  sum = 0;
     	  for (Measure child : context.getChildrenMeasures(metric.key())) {
     	        sum += child.getIntValue();
