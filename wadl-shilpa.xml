@@ -1,0 +1,62 @@
+ <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd" 
+  xmlns:tns="urn:yahoo:yn" xmlns:yn="urn:yahoo:yn" xmlns:ya="urn:yahoo:api"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://wadl.dev.java.net/2009/02"> 
+   <grammars> 
+     <include href="NewsSearchResponse.xsd"/> 
+     <include href="Error.xsd"/> 
+   </grammars> 
+ 
+   <resources base="http://DOMAIN.bankofamerica.com/CustomerService/V1/"> 
+	<resource path="{customer_id}">
+	   <param name="customer_id" style="template" type="xsd:int"/>
+       <method name="GET" id="search">
+         <request></request> 
+         <response status="200">            
+		   <representation mediaType="app/json"/>
+         </response> 
+         <response status="400"> 
+           <representation mediaType="application/json" /> 
+         </response>
+		<response status="404"> 
+           <representation mediaType="application/json" /> 
+         </response> 		 
+       </method> 
+     </resource>
+	<resource path="/">
+       <method name="POST" id="create">
+         <request>
+			<representation mediaType="application/json">
+                  <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+                    <xsdxt:code xmlns:db="http://docbook.org/ns/docbook">
+                        <programlisting language="javascript">{
+							"customer": {
+								"name": "jqsmith",
+								"email": "john.smith@example.org
+							}
+						}</programlisting>
+                     </xsdxt:code>
+                  </wadl:doc>
+               </representation>		 
+		 </request> 
+		<response status="201">
+               <representation mediaType="application/json">
+                  <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+                    <xsdxt:code xmlns:db="http://docbook.org/ns/docbook">
+                        <programlisting language="javascript">{
+					"customer": {
+						"id": "1000",
+						"name": "jqsmith",
+						"email": "john.smith@example.org
+					}
+				}</programlisting>
+									 </xsdxt:code>
+								  </wadl:doc>
+               </representation> 		 
+       </method> 
+     </resource> 	
+   </resources>
+ </application>
+ 
+  
